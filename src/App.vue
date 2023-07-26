@@ -2,7 +2,17 @@
   <router-view />
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+
+  let brand = ' | VUE STOCK'
+
+  export default {
+    watch: {
+      '$route' (to: any) {
+        document.title = to.meta.title + brand
+      }
+    },
+  }
 
 </script>
 

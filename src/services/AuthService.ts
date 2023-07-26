@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const authService = axios.create({
-    baseURL: 'https://dummyjson.com/auth/',
+    baseURL: 'http://localhost:3000/api/',
     withCredentials: false,
     headers: {
         'Content-Type': 'application/json'

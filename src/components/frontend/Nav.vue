@@ -24,7 +24,7 @@
                     <a class="nav-link text-white" href="#">ติดต่อเรา</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">สมัครสมาชิก</a>
+                    <router-link class="nav-link text-white" to="/register">สมัครสมาชิก</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link class="nav-link text-white" to="/login">เข้าสู่ระบบ</router-link>
