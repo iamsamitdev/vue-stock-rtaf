@@ -9,12 +9,12 @@ import './styles/custom.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 
-// Popper
-import '@popperjs/core'
-
 // Bootstrap 5
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
+
+// Bootstrap Icons
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 createApp(App)
 .use(router)
