@@ -180,7 +180,7 @@
                                     <td>{{ product.created_at }}</td>
                                     <td style="width: 140px;">
                                         <a href="#" class="btn btn-sm btn-warning">Edit</a>&nbsp;
-                                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="#delete" @click="handleDelete(product.id)" class="btn btn-sm btn-danger">Delete</a>
                                     </td>   
                                 </tr>
                             </tbody>
@@ -238,7 +238,6 @@
 
         const photo: any = previewImage.value != 'https://via.placeholder.com/300x300' ? previewImage.value : null
         e.preventDefault()
-        // console.log(photo)
 
         const data = new FormData()
         data.append('name', formData.value.name)
@@ -252,30 +251,47 @@
        
         // Append the photo (image file) to the FormData
         if (photo) {
-        // Fetch the image file from the URL and append it to FormData
         fetch(photo)
             .then(res => res.blob())
             .then(blob => {
-                const file = new File([blob], 'filename.jpg', { type: 'image/jpeg' });
-                data.append('photo', file);
+                const file = new File([blob], 'filename.jpg', { type: 'image/jpeg' })
+                data.append('photo', file)
 
                 BackendService.post('products', data)
                     .then((res) => {
-                        console.log(res.data);
+                        console.log(res.data)
+                        // redirect to product
+                        window.location.href = 'product'
                     })
                     .catch((error) => {
-                        console.error('Error uploading image:', error);
-                    });
-            });
+                        console.error('Error uploading image:', error)
+                })
+            })
         } else {
-        // If no image is selected, directly post the form data
         BackendService.post('products', data)
             .then((res) => {
-                console.log(res.data);
+                console.log(res.data)
+                // redirect to product
+                window.location.href = 'product'
             })
             .catch((error) => {
                 console.error('Error posting form data:', error);
-            });
+            })
+        }
+    }
+
+    // -------- ส่วนของการลบข้อมูล ---------------
+    const handleDelete = (id: number) => {
+        if (confirm('Are you sure to delete?')) {
+            BackendService.delete(`products/${id}`)
+                .then((res) => {
+                    console.log(res.data)
+                    // redirect to product
+                    window.location.href = 'product'
+                })
+                .catch((error) => {
+                    console.error('Error deleting data:', error);
+                })
         }
     }
 
