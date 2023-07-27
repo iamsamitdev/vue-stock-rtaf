@@ -223,6 +223,15 @@ function deleteProduct(req, res) {
         }
       }
     );
+    // Delete file from server
+    const fs = require("fs");
+    const path = require("path");
+    const filePath = path.join(
+      __dirname,
+      "../public/uploads/",
+      req.params.productId
+    );
+
   } catch (err) {
     console.error("Error storing product in the database: ", err);
     res.sendStatus(500);
