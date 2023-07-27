@@ -175,6 +175,8 @@
                 }
 
             }).catch(error => {
+                // ปิด Loading
+                loading.value = false
                 console.log(error)
                 Swal.fire(
                     'ลงทะเบียนไม่สำเร็จ',

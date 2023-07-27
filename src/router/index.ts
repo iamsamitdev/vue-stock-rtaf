@@ -14,6 +14,25 @@ import Register from '../views/frontend/Register.vue'
 
 // Backend Pages
 import Dashboard from '../views/backend/Dashboard.vue'
+import Product from '../views/backend/Product.vue'
+
+// ฟังก์ชันสำหรับทำ Route Guard
+function authGuard(to: any, from: any, next: any) {
+    // อ่านค่า token จาก localStorage
+    let token = ""
+
+    // ตรวจสอบว่ามี token หรือไม่
+    try {
+        token = localStorage.getItem('token') || ""
+        if(token != ""){
+            next() // ไปต่อ
+        }else{
+            next({name: 'Login'}) // ไปหน้า login
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const routes = [
     {
@@ -59,6 +78,7 @@ const routes = [
         // Backend Routes
         path: '/backend',
         component: Backend,
+        beforeEnter: authGuard,
         children: [
             {
                 path: 'dashboard',
@@ -66,7 +86,15 @@ const routes = [
                 component: Dashboard,
                 meta: {
                     title: 'Dahsboard',
-                }
+                },
+            },
+            {
+                path: 'product',
+                name: 'Product',
+                component: Product,
+                meta: {
+                    title: 'Product',
+                },
             }
         ]
     }

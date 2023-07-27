@@ -1,6 +1,6 @@
 <template>
     <footer class="pt-5 d-flex justify-content-between">
-        <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
+        <span>Copyright © 2023-2025 <a href="#">ITGenius</a></span>
         <ul class="nav m-0">
             <li class="nav-item">
                 <a class="nav-link text-secondary" aria-current="page" href="#">Privacy Policy</a>

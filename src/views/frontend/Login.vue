@@ -8,6 +8,7 @@
                 <form @submit.prevent="handleSubmit">
                     <div class="form-floating mb-3">
                         <input 
+                            autofocus
                             v-model="formData.email" 
                             type="text" 
                             :class="{'is-invalid': v$.email.$errors.length}" 
@@ -101,17 +102,38 @@
 
                 // ถ้าเข้าสู่ระบบสำเร็จ
                 if(response.data.status === 'ok'){
-                    Swal.fire(
-                        'เข้าสู่ระบบสำเร็จ',
-                        'ยินดีต้อนรับเข้าสู่ระบบ',
-                        'success'
-                    )
-                    // บันทึกข้อมูลลง LocalStorage
-                    localStorage.setItem('user', JSON.stringify(response.data.user))
-                    
-                    // ส่งไปหน้า Profile
-                    window.location.href = '/backend/dashboard'
+
+                    let timerInterval = 0
+                    Swal.fire({
+                        title: 'เข้าสู่ระบบสำเร็จ',
+                        icon: 'success',
+                        html: 'กำลังเข้าสู่หน้า dashboard ใน <b></b> วินาที.',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            // ส่งไปหน้า dashboard
+                             // บันทึกข้อมูลลง LocalStorage
+                            localStorage.setItem('user', JSON.stringify(response.data.user))
+                            localStorage.setItem('token', response.data.token)
+                            
+                            // ส่งไปหน้า Profile
+                            window.location.href = '/backend/dashboard'
+                        }
+                    })
+                   
                 } else {
+                    loading.value = false
                     Swal.fire(
                         'เข้าสู่ระบบไม่สำเร็จ',
                         'กรุณาตรวจสอบข้อมูลให้ถูกต้อง',

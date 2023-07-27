@@ -7,13 +7,50 @@
     padding: 90px 0 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     z-index: 99;
+    background-color: #333 !important;
 }
+
+.navbar-brand {
+     color: #fff !important;
+     margin-left: 20px !important;
+}
+
+.navbaradmin {
+    background-color: #058f96 !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler {
+    border: 0px solid #fff !important;
+    outline: none !important;
+}
+
+.navbar-toggler:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ml-sm-auto {
+    margin-left: auto !important;
+}
+
+.content {
+    margin-top: 50px !important;
+}
+
 
 @media (max-width: 767.98px) {
     .sidebar {
         top: 11.5rem;
         padding: 0;
     }
+    .content {
+        margin-top: 180px !important;
+    }
+    
 }
     
 .navbar {
@@ -28,18 +65,14 @@
     }
 }
 
-.ml-sm-auto {
-    margin-left: auto !important;
-}
-
-.content {
-    margin-top: 50px !important;
-}
-
 .sidebar .nav-link {
-    color: #333;
+    color: #fff;
 }
 
-.sidebar .nav-link.active {
-    color: #0d6efd;
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+    color: #fdd10d;
+}
+
+.activemenulink {
+    color: #fdd10d !important;
 }
